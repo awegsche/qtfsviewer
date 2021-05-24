@@ -11,9 +11,9 @@
 TFSModel::TFSModel(tfs::dataframe<double> *dataframe)
     : df(dataframe)
     , is_filtering(false)
-    , workerthread()
-    , accepted_rows(nullptr)
     , filterworker(new QFilterWorker(dataframe))
+    , accepted_rows(nullptr)
+    , workerthread()
 {
 
     connect(this, &TFSModel::request_filter, filterworker, &QFilterWorker::filter);
@@ -47,9 +47,14 @@ void TFSModel::filter(const QString &pattern)
 
 void TFSModel::receive_indices(std::vector<size_t>* buf)
 {
+    // if buf is nullptr, filtering failed and we don't update the model
+    if (!buf) return;
+    // accepted_rows will be replace, so trash the old one
     if (accepted_rows)
         delete accepted_rows;
+    // replace old accepted_row with new one
     accepted_rows = buf;
+    // and finally, request redraw
     endResetModel();
 }
 

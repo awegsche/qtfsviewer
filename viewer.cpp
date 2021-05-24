@@ -54,20 +54,17 @@ Viewer::Viewer(QWidget *parent)
     ui->customPlot->setInteraction(QCP::iRangeZoom, true);
     ui->customPlot->legend->setFont(QFont("Helvetica", 12));
 
-    QCPItemText * textlabel = new QCPItemText(ui->customPlot);
-    textlabel->setPositionAlignment(Qt::AlignTop | Qt::AlignCenter);
-    textlabel->setText("Let's pretend this is a PyQtGraph");
-    textlabel->position->setType(QCPItemPosition::ptAxisRectRatio);
-    textlabel->position->setCoords(0.5, 0.05);
-    textlabel->setFont(QFont(font().family(), 22));
-    textlabel->setBrush(Qt::white);
-    textlabel->setPen(QPen(Qt::black));
-
     QHeaderView *verticalHeader = ui->tableView->verticalHeader();
     verticalHeader->setSectionResizeMode(QHeaderView::Fixed);
     verticalHeader->setDefaultSectionSize(12);
 
     connect(&message_model, SIGNAL(rowsInserted(QModelIndex, int,int)), ui->logView, SLOT(scrollToBottom()));
+
+    QAction *search = new QAction(this);
+    search->setShortcut(Qt::CTRL | Qt::Key_F);
+
+    connect(search, &QAction::triggered, this, &Viewer::jump_to_search);
+    this->addAction(search);
 
 }
 
@@ -156,6 +153,8 @@ void Viewer::set_chart(const std::string &name,
 
 void Viewer::set_chart(const tfs::data_vector<double> &x, const QVector<const tfs::data_vector<double> *> &y)
 {
+    ui->actionplotColumn->setChecked(true);
+    ui->actionscatter_plot_column->setChecked(false);
     if (x.get_type() != tfs::DataType::LE) return;
     ui->customPlot->clearGraphs();
     QVector<double> x_(x.size());
@@ -267,7 +266,7 @@ void Viewer::on_actionscatter_plot_column_triggered()
         ui->customPlot->graph(i)->setLineStyle(QCPGraph::LineStyle::lsNone);
         QCPScatterStyle myScatter;
         myScatter.setShape(QCPScatterStyle::ssCross);
-        myScatter.setPen(QPen(Qt::blue));
+        myScatter.setPen(plot_colors[i]);
         myScatter.setBrush(Qt::white);
         myScatter.setSize(4);
         ui->customPlot->graph(i)->setScatterStyle(myScatter);
@@ -316,6 +315,7 @@ void Viewer::open_tfs(const QString &filename)
             df = new tfs::dataframe<double>(filename.toStdString());
 
         qDebug() << "tfs file loaded";
+        setWindowTitle(QString("TFS Viewer - %1").arg(QFileInfo(filename).fileName()));
 
         if (model)
             delete model;
@@ -326,8 +326,15 @@ void Viewer::open_tfs(const QString &filename)
     }
 }
 
-void Viewer::on_lineEdit_textChanged(const QString &arg1)
+
+void Viewer::jump_to_search()
 {
+    ui->filterDataEdit->setFocus();
+}
+
+void Viewer::on_filterDataEdit_textChanged(const QString &arg1)
+{
+    if (!model) return;
     model->filter(arg1);
-    //data_filter_model->setFilterRegExp(arg1);
+
 }

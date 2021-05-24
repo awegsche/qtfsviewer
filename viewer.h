@@ -36,8 +36,9 @@ private slots:
 
     void on_actionSave_Compressed_triggered();
 
+    void jump_to_search();
 
-    void on_lineEdit_textChanged(const QString &arg1);
+    void on_filterDataEdit_textChanged(const QString &arg1);
 
 private:
     Ui::Viewer *ui;

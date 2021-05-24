@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>res/graph_01.svg</file>
+        <file>res/graph_02.svg</file>
+        <file>res/open.svg</file>
+        <file>res/save.svg</file>
+        <file>res/graph_01_clr.svg</file>
+        <file>res/graph_02_clr.svg</file>
+        <file>res/open_clr.svg</file>
+        <file>res/line_plot_001.png</file>
+        <file>res/line_plot_001_inactive.png</file>
+        <file>res/scat_plot_001.png</file>
+        <file>res/scatter_plot_001_inactive.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>darkstyle.css</file>
+    </qresource>
+</RCC>
