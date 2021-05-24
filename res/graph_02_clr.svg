@@ -1,0 +1,11 @@
+<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="chart-scatter" role="img"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-chart-scatter fa-w-16 fa-9x">
+    <g class="fa-group">
+        <path fill="#B0B0B0"
+            d="M512 400v32a16 16 0 0 1-16 16H32a32 32 0 0 1-32-32V80a16 16 0 0 1 16-16h32a16 16 0 0 1 16 16v304h432a16 16 0 0 1 16 16z"
+            class="fa-secondary"></path>
+        <path fill="#ff4e4e"
+            d="M160 256a32 32 0 1 0 32 32 32 32 0 0 0-32-32zM416 96a32 32 0 1 0 32 32 32 32 0 0 0-32-32zm-224 0a32 32 0 1 0 32 32 32 32 0 0 0-32-32zm192 160a32 32 0 1 0 32 32 32 32 0 0 0-32-32zm-96-64a32 32 0 1 0 32 32 32 32 0 0 0-32-32z"
+            class="fa-primary"></path>
+    </g>
+</svg>
