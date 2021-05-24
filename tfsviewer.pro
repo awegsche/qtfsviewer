@@ -12,27 +12,27 @@ CONFIG += c++17
 
 
 SOURCES += \
-    darkstyle.cpp \
-    main.cpp \
-    qcustomplot.cpp \
-    qfilterworker.cpp \
-    tfsdatafiltermodel.cpp \
-    tfsmodel.cpp \
-    tfspropertymodel.cpp \
-    viewer.cpp \
+    src/darkstyle.cpp \
+    src/main.cpp \
+    src/qcustomplot.cpp \
+    src/qfilterworker.cpp \
+    src/tfsdatafiltermodel.cpp \
+    src/tfsmodel.cpp \
+    src/tfspropertymodel.cpp \
+    src/viewer.cpp \
 
 HEADERS += \
-    darkstyle.h \
-    data.h \
-    qcustomplot.h \
-    qfilterworker.h \
-    tfs_dataframe.h \
-    tfsdatafiltermodel.h \
-    tfshelper.h \
-    tfsmodel.h \
-    tfspropertymodel.h \
-    viewer.h \
-    tfs_dataframe.h \
+    src/darkstyle.h \
+    src/data.h \
+    src/qcustomplot.h \
+    src/qfilterworker.h \
+    src/tfs_dataframe.h \
+    src/tfsdatafiltermodel.h \
+    src/tfshelper.h \
+    src/tfsmodel.h \
+    src/tfspropertymodel.h \
+    src/viewer.h \
+    src/tfs_dataframe.h \
 
 FORMS += \
     viewer.ui
