@@ -14,7 +14,7 @@ This project is released under Qt's open source rules, so it links dynamically t
 
 ### Binary release
 
-Check out my precompiled binaries in the `Releases` tab on the right. 
+Check out my precompiled binaries in the [Releases](https://github.com/awegsche/qtfsviewer/releases) tab on the right. 
 
 **Note**: Currently this project only supports Qt5 from Qt5.12 onwards. Qt6 is not supported but an upgrade is planned.
 
