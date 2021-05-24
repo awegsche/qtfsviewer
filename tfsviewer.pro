@@ -42,7 +42,12 @@ TRANSLATIONS += \
 
 DEFINES += QCUSTOMPLOT_USE_OPENGL
 
-LIBS += -lopengl32
+win32 {
+    LIBS += -lopengl32
+}
+unix {
+    LIBS += -lOpenGL
+}
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
