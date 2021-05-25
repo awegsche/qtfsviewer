@@ -35,7 +35,7 @@ HEADERS += \
     src/tfs_dataframe.h \
 
 FORMS += \
-    viewer.ui
+    src/viewer.ui
 
 TRANSLATIONS += \
     tfsviewer_en_150.ts
