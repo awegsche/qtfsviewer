@@ -676,7 +676,7 @@ QStatusBar {
   </widget>
   <action name="actionOpen">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/icons/res/open_clr.svg</normaloff>
      <activeoff>:/icons/res/open.svg</activeoff>:/icons/res/open_clr.svg</iconset>
    </property>
@@ -686,7 +686,7 @@ QStatusBar {
   </action>
   <action name="actionplotColumn">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/icons/res/line_plot_001_inactive.png</normaloff>
      <disabledoff>:/icons/res/line_plot_001.png</disabledoff>
      <activeoff>:/icons/res/line_plot_001.png</activeoff>
@@ -707,7 +707,7 @@ QStatusBar {
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/icons/res/scatter_plot_001_inactive.png</normaloff>
      <disabledoff>:/icons/res/line_plot_001_inactive.png</disabledoff>
      <disabledon>:/icons/res/scatter_plot_001_inactive.png</disabledon>
@@ -723,7 +723,7 @@ QStatusBar {
   </action>
   <action name="actionSave">
    <property name="icon">
-    <iconset resource="resources.qrc">
+    <iconset>
      <normaloff>:/icons/res/save.svg</normaloff>:/icons/res/save.svg</iconset>
    </property>
    <property name="text">
@@ -740,12 +740,10 @@ QStatusBar {
   <customwidget>
    <class>QCustomPlot</class>
    <extends>QWidget</extends>
-   <header>qcustomplot.h</header>
+   <header>src/qcustomplot.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

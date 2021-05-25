@@ -38,7 +38,7 @@ FORMS += \
     src/viewer.ui
 
 TRANSLATIONS += \
-    tfsviewer_en_150.ts
+    src/tfsviewer_en_150.ts
 
 DEFINES += QCUSTOMPLOT_USE_OPENGL
 
