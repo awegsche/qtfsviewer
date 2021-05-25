@@ -15,6 +15,8 @@ Viewer::Viewer(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Viewer)
     , df(nullptr)
+    , model(nullptr)
+    , prop_model(nullptr)
 {
     qDebug() << "about to start main window";
     ui->setupUi(this);
@@ -71,8 +73,11 @@ Viewer::Viewer(QWidget *parent)
 Viewer::~Viewer()
 {
     delete ui;
-    delete this->df;
-    delete this->model;
+    delete df;
+    if (model)
+        delete model;
+    if (prop_model)
+        delete prop_model;
 }
 
 
@@ -319,6 +324,9 @@ void Viewer::open_tfs(const QString &filename)
 
         if (model)
             delete model;
+        if (prop_model)
+            delete prop_model;
+
         model = new TFSModel(df);
         ui->tableView->setModel(model);
         prop_model = new TfsPropertyModel(this->df);
