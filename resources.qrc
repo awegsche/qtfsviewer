@@ -8,5 +8,7 @@
         <file>res/scat_plot_001.png</file>
         <file>res/scatter_plot_001_inactive.png</file>
     </qresource>
-    <qresource prefix="/"/>
+    <qresource prefix="/">
+        <file>res/darkstyle.qss</file>
+    </qresource>
 </RCC>

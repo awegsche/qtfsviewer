@@ -10,6 +10,7 @@ DarkStyle::DarkStyle()
 {
     qDebug() << "setting new style";
 }
+/*
 
 void DarkStyle::polish(QWidget *widget)
 {
@@ -140,3 +141,5 @@ QPainterPath DarkStyle::roundRectPath(const QRect &rect)
     return path;
 }
 
+
+*/

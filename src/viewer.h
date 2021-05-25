@@ -62,6 +62,10 @@ private:
     void set_chart(const tfs::data_vector<double>& x,
                    const QVector<const tfs::data_vector<double>*>& y);
 
+    void setViewStyles();
+    
+    void setPlotStyles();
+    
 public:
     static void redirectMessageToLogWindow(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 

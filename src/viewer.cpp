@@ -11,23 +11,22 @@ QStringListModel message_model;
 
 
 
-Viewer::Viewer(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::Viewer)
-    , df(nullptr)
-    , model(nullptr)
-    , prop_model(nullptr)
+void Viewer::setViewStyles()
 {
-    qDebug() << "about to start main window";
-    ui->setupUi(this);
+    QHeaderView *verticalHeader = ui->tableView->verticalHeader();
+    verticalHeader->setSectionResizeMode(QHeaderView::Fixed);
+    verticalHeader->setDefaultSectionSize(12);
+    ui->tableView->horizontalHeader()->setFixedHeight(20);
 
-    //ui->formLayout->addWidget(new QChart());
-    //ui->graphicsView->setScene(&scene);
+    verticalHeader = ui->propertyTable->verticalHeader();
+    verticalHeader->setSectionResizeMode(QHeaderView::Fixed);
+    verticalHeader->setDefaultSectionSize(12);
+    ui->propertyTable->horizontalHeader()->setFixedHeight(20);
+    ui->propertyTable->verticalHeader()->hide();
+}
 
-    auto* vHead = ui->propertyTable->verticalHeader();
-
-    vHead->setDefaultSectionSize(18);
-
+void Viewer::setPlotStyles()
+{
     QPen pen;
     pen.setWidth(2);
     pen.setColor(QColor::fromRgbF(0.12156, 0.46667, 0.70588));
@@ -47,18 +46,44 @@ Viewer::Viewer(QWidget *parent)
     pen.setColor(QColor::fromRgbF(0.4980392156862745, 0.4980392156862745, 0.4980392156862745));
     plot_colors.append(pen);
 
-    //message_model.setStringList(QStringList());
-    ui->logView->setModel(&message_model);
+    QFont labelFont("Fira Sans", 12, QFont::Bold);
+    QFont ticksFont("Fira Sans", 10);
+    labelFont.setStyleStrategy(QFont::PreferAntialias);
 
     ui->chartArea->setVisible(false);
     ui->customPlot->setInteraction(QCP::iRangeDrag, true);
-    ui->customPlot->setOpenGl(true, 2);
+    ui->customPlot->setOpenGl(true, 8);
     ui->customPlot->setInteraction(QCP::iRangeZoom, true);
-    ui->customPlot->legend->setFont(QFont("Helvetica", 12));
+    ui->customPlot->legend->setFont(labelFont);
 
-    QHeaderView *verticalHeader = ui->tableView->verticalHeader();
-    verticalHeader->setSectionResizeMode(QHeaderView::Fixed);
-    verticalHeader->setDefaultSectionSize(12);
+    ui->customPlot->xAxis->setLabelFont(labelFont);
+    ui->customPlot->xAxis->setAntialiased(true);
+    ui->customPlot->xAxis->setTickLabelFont(ticksFont);
+    ui->customPlot->yAxis->setTickLabelFont(ticksFont);
+}
+
+Viewer::Viewer(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::Viewer)
+    , df(nullptr)
+    , model(nullptr)
+    , prop_model(nullptr)
+{
+    qDebug() << "about to start main window";
+    ui->setupUi(this);
+    QFile stylesheet(":/res/darkstyle.qss");
+    stylesheet.open(QFile::ReadOnly);
+    setStyleSheet(stylesheet.readAll());
+
+    //ui->formLayout->addWidget(new QChart());
+    //ui->graphicsView->setScene(&scene);
+
+    setPlotStyles();
+
+    setViewStyles();
+
+    //message_model.setStringList(QStringList());
+    ui->logView->setModel(&message_model);
 
     connect(&message_model, SIGNAL(rowsInserted(QModelIndex, int,int)), ui->logView, SLOT(scrollToBottom()));
 
@@ -217,7 +242,7 @@ void Viewer::on_actionplotColumn_triggered()
             qDebug() << "plot works only with %le columns";
             return;
         }
-       set_chart("some column", col.as_double_vector());
+       set_chart(col.get_name(), col.as_double_vector());
        qDebug() << "plotting successful";
     }
     else if (select->selectedColumns().size() >= 2) {
