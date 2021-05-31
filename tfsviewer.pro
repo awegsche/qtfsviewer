@@ -17,13 +17,10 @@ SOURCES += \
     src/qcustomplot.cpp \
     src/qfilterworker.cpp \
     src/tfsdatafiltermodel.cpp \
-    src/tfsmodel.cpp \
-    src/tfspropertymodel.cpp \
     src/viewer.cpp \
 
 HEADERS += \
     src/darkstyle.h \
-    src/data.h \
     src/qcustomplot.h \
     src/qfilterworker.h \
     src/tfs_dataframe.h \
