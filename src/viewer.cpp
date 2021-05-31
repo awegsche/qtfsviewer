@@ -46,8 +46,8 @@ void Viewer::setPlotStyles()
     pen.setColor(QColor::fromRgbF(0.4980392156862745, 0.4980392156862745, 0.4980392156862745));
     plot_colors.append(pen);
 
-    QFont labelFont("Fira Sans", 12, QFont::Bold);
-    QFont ticksFont("Fira Sans", 10);
+    QFont labelFont("Arial", 12, QFont::Bold);
+    QFont ticksFont("Arial", 10);
     labelFont.setStyleStrategy(QFont::PreferAntialias);
 
     ui->chartArea->setVisible(false);
